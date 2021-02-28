@@ -1,0 +1,66 @@
+<html>
+<pre class="brush: python">
+   from discord.ext import commands
+import discord
+import json
+import os
+print(os.getcwd())
+print(discord.__version__)
+
+intents = discord.Intents.default()
+intents.members = True  # Subscribe to the privileged members intent.
+
+def get_prefix(client, message):
+    try:
+        with open('prefixes.json', 'r') as f:
+            prefixes = json.load(f)
+            return prefixes[str(message.guild.id)]
+        
+    except KeyError: # if the guild's prefix cannot be found in 'prefixes.json'
+        with open('prefixes.json', 'r') as k:
+            prefixes = json.load(k)
+        prefixes[str(message.guild.id)] = '!' # prefix for new guilds, if they're not found in the json file
+
+        with open('prefixes.json', 'w') as j:
+            json.dump(prefixes, j, indent = 4)
+
+        with open('prefixes.json', 'r') as t:
+            prefixes = json.load(t)
+            return prefixes[str(message.guild.id)]
+        
+    except: 
+        return '!' 
+
+bot = commands.Bot(command_prefix=get_prefix)
+bot.remove_command('help')
+
+@bot.event
+async def on_ready():
+    await bot.change_presence(status = discord.Status.dnd, activity = discord.Game('!help | echobot.xyz'))
+    print('The bot is ready!')
+    print(bot.user.name)
+    print(bot.user.id)
+    
+# Test
+bot.load_extension("cogs.test")
+
+# Bot API
+bot.load_extension("cogs.statcord")
+bot.load_extension("cogs.dblcog")
+bot.load_extension("cogs.api")
+
+# Bot Commands
+bot.load_extension("cogs.music")
+bot.load_extension("cogs.help")
+bot.load_extension("cogs.helpmenu")
+bot.load_extension("cogs.owner")
+bot.load_extension("cogs.botut")
+bot.load_extension("cogs.fun")
+bot.load_extension("cogs.ut")
+bot.load_extension("cogs.admin")
+bot.load_extension("cogs.prefix")
+bot.load_extension("cogs.giveaway")
+bot.load_extension("cogs.owner2")
+
+</pre>
+  </html
