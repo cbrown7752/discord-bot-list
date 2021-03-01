@@ -35,6 +35,46 @@
             color: white;
         }
   
+  .button {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 1px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 13px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+  
 </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +107,7 @@
 <body style="background-color:#000000;">
 <div class="container">
 <p style="text-align: center;"><br></p>
-<p style="text-align: center;"><a href="http://discordmachines.org/bot/make-a-bot.html"><span style="font-size: 20px; color: rgb(209, 213, 216);">Course 1-Make a bot</span></a></p>
+<a href="bot/make-a-bot" class="button" style="vertical-align:middle"><span>Course 1 </span></a>
   </div>  
     <footer>
         <p>Copyright &copy; 2020-2021 All Rights Reserved by <a href="mailto:support@discordmachines.org">Discord Machines</a>.<br><a> 
