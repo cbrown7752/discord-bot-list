@@ -1,3 +1,5 @@
-# DiscordMachines
+# Discord Machines
 
-[here pog](https://discordmachines.org)
+Learn how to code today!!
+
+[Discord Machines Website](https://discordmachines.org)
