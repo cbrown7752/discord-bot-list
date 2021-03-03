@@ -32,20 +32,19 @@ a:hover {
   border-radius: 50%;
 }
   
-.container {
+.container { 
+  height: 200px;
   position: relative;
-  text-align: center;
-  color: white;
-  font-size: 100%;
-  z-index: -1;
+  border: 3px solid green; 
 }
- 
-.centered {
-  position: fixed;
+
+.center {
+  margin: 0;
+  position: absolute;
   top: 50%;
   left: 50%;
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-}
   
   h2 .blue-text {
     color: blue;
@@ -111,7 +110,11 @@ a:hover {
 </div>
   <p><br></p>
   <p><br></p>
+  <div class="container">
+  <div class="center">
     <a href="make-bot-on" style="text-align: center;" class="next">Next Course &raquo;</a>
+    </div>
+</div>
   <p><br></p>
     <footer>
       <p>Courses and examples are reviewed to avoid errors, but we cannot guarantee full correctness of all code. </p>
