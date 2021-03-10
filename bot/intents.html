@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Discord Machines</title>
+  <meta property="og:image"  content="https://discordmachines.org/logodm.png">
+  <link rel="icon" href="https://discordmachines.org/logodm.png">
+  <meta name="description" content="Learn how to code a discord bot today!!">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  footer {
+            text-align: center;
+            padding: 3px;
+            background-color: #333333;
+            color: white;
+        }
+  
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+ 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="http://discordmachines.org/index.html">Discord Machines</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="http://discordmachines.org/index.html">Home</a></li>
+        <li><a href="https://discord.gg/c8AZDZZ4En">Join Our Discord</a></li>
+        <li><a href="home.html">Make A Discord Bot In Python</a></li>
+        <li><a href="http://discordmachines.org/html/home.html">HTML</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<body style="background-color:#000000;">
+
+<h2><span style="color: rgb(209, 213, 216);">What intents are needed?</span></h2>
+<p style="box-sizing: border-box; margin-bottom: 8px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Each attribute in the <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Intents" style="box-sizing: border-box; text-decoration: none; "color: rgb(41, 105, 176); title="discord.Intents"><code class="xref py py-class docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span>Intents</span></code></a> class documents what <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord-api-events" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);"><span class="std std-ref" style="box-sizing: border-box;">events</span></a> it corresponds to and what kind of cache it enables.</span></p>
+<p style="box-sizing: border-box; margin-bottom: 8px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">For example, if you want a bot that functions without spammy events like presences or typing then we could do the following:</span></p>
+<div class="highlight-python3 notranslate relative-copy" style="box-sizing: border-box; position: relative;">
+    <p><br></p>
+    <div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <pre style="background: #414141;"> <span style="color: #008800; font-weight: bold;">import</span> <span style="color: #0e84b5; font-weight: bold;">discord</span>
+<span style="color: rgb(209, 213, 216);"> intents = discord.Intents.default()</span>
+ <span style="color: rgb(209, 213, 216);">intents.typing =</span> <span style="color: #007020;">False</span>
+ <span style="color: rgb(209, 213, 216);">intents.presences =</span> <span style="color: #007020;">False</span>
+
+ <span style="color: #888888;"># Somewhere else:</span>
+ <span style="color: #888888;"># client = discord.Client(intents=intents)</span>
+ <span style="color: #888888;"># or</span>
+ <span style="color: #888888;"># from discord.ext import commands</span>
+ <span style="color: #888888;"># bot = commands.Bot(command_prefix=&apos;!&apos;, intents=intents)</span></pre>
+    </div>
+</div>
+<p style="text-align: center;"><br></p>
+<p style="box-sizing: border-box; margin-bottom: 8px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Note that this doesn&rsquo;t enable</span> <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Intents.members" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.Intents.members"><code class="xref py py-attr docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">Intents.members</span></code></a><span style="color: rgb(209, 213, 216);">because it is a privileged intent.</span></p>
+<p style="box-sizing: border-box; margin-bottom: 8px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Example showing a bot that only deals with messages and guild information:</span> 
+<p style="text-align: center;"><br></p>
+</p>
+<div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+    <pre style="background: #414141;"> <span style="color: rgb(209, 213, 216);">intents = discord.Intents(messages=</span><span style="color: #007020;">True</span><span style="color: rgb(209, 213, 216);">, guilds=</span><span style="color: #007020;">True</span>)
+ <span style="color: #888888;"># If you also want reaction events enable the following:</span>
+ <span style="color: #888888;"># intents.reactions = True</span>
+
+ <span style="color: #888888;"># Somewhere else:</span>
+ <span style="color: #888888;"># client = discord.Client(intents=intents)</span>
+ <span style="color: #888888;"># or</span>
+ <span style="color: #888888;"># from discord.ext import command</span><pre style="background: #414141;"> <span style="color: #888888;"># bot = commands.Bot(command_prefix=&apos;!&apos;, intents=intents)</span></pre><br></pre>
+</div>
+<p style="text-align: center;"><br></p>
+<h2><span style="color: rgb(209, 213, 216);">Privileged Intents</span></h2>
+<p><span style="color: rgb(209, 213, 216);">With the API change requiring bot authors to specify intents, some intents were restricted further and require more manual steps. These intents are called privileged intents.</span></p>
+<p><span style="color: rgb(209, 213, 216);">A privileged intent is one that requires you to go to the developer portal and manually enable it. To enable privileged intents do the following:</span></p>
+<ul style="margin-left: 2px ;">
+    <li style="box-sizing: border-box; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Make sure you&rsquo;re logged on to the <a class="reference external" href="https://discord.com/" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);">Discord website</a>.</span></li>
+    <li style="box-sizing: border-box; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Navigate to the <a class="reference external" href="https://discord.com/developers/applications" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);">application page</a>.</span></li>
+    <li style="box-sizing: border-box; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Click on the bot you want to enable privileged intents for.</span></li>
+    <li style="box-sizing: border-box; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Navigate to the bot tab on the left side of the screen.</span></li>
+</ul>
+<p><br></p>
+<div class="admonition warning" style="box-sizing: border-box; padding: 0px 0.8em 0.8em; margin: 0.8em 0px; border-radius: 2.5px; border-left-width: 6px; border-left-style: solid; background-color: var(--admonition-background); border-left-color: #FF0000;">
+    <p class="admonition-title" style="box-sizing: border-box; margin: 0px -0.8rem; line-height: 1.4; font-weight: bold; padding: 0.4rem 0.6rem 0.4rem 2.5rem; position: relative; user-select: none; background-color: var(--warning-background); color: var(--warning-text);"><span style="color: rgb(209, 213, 216);">Warning</span></p>
+    <p style="box-sizing: border-box; margin-bottom: 8px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Enabling privileged intents when your bot is in over 100 guilds requires going through <a class="reference external" href="https://support.discord.com/hc/en-us/articles/360040720412" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);">bot verification</a>. If your bot is already verified and you would like to enable a privileged intent you must go through <a class="reference external" href="https://dis.gd/contact" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);">Discord support</a> and talk to them about it.</span></p>
+</div>
+<div class="admonition note" style="box-sizing: border-box; padding: 0px 0.8em 0.8em; margin: 0.8em 0px; border-radius: 2.5px; border-left-width: 6px; border-left-style: solid; background-color: var(--admonition-background); border-left-color: #0000FF;">
+    <p class="admonition-title" style="box-sizing: border-box; margin: 0px -0.8rem; line-height: 1.4; font-weight: bold; padding: 0.4rem 0.6rem 0.4rem 2.5rem; position: relative; user-select: none; background-color: var(--note-background); color: var(--note-text);"><span style="color: rgb(209, 213, 216);">Note</span></p>
+    <p style="box-sizing: border-box; margin-bottom: 8px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Even if you enable intents through the developer portal, you still have to enable the intents through code as well.</span></p>
+</div>
+<section style="box-sizing: border-box;">
+    <section style="box-sizing: border-box;">
+        <h4 style="box-sizing: border-box; font-weight: normal; color: var(--main-big-headers-text); margin: 20px 0px 10px; padding: 10px 0px; border-bottom: 1px solid var(--main-h4-header-border); font-size: 1.1em;"><span style="color: rgb(209, 213, 216);"><span style="font-size: 24px;">Presence Intent</span><a class="headerlink" href="https://discordpy.readthedocs.io/en/latest/intents.html#presence-intent" title="Permalink to this headline" style="box-sizing: border-box; text-decoration: none; color: var(--header-link); font-size: 0.8em; padding: 0px 4px; visibility: hidden;"></a></span></h4>
+        <ul class="simple" style="box-sizing: border-box; list-style: disc; margin: 1em 0px; padding-left: 1.3em;">
+            <li style="box-sizing: border-box; line-height: 1.4; padding: 2px 0px;">
+                <p style="box-sizing: border-box; margin: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Whether you use</span> <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Member.status" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.Member.status"><code class="xref py py-attr docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">Member.status</span></code></a> <span style="color: rgb(209, 213, 216);">at all to track member statuses.</span></p>
+            </li>
+            <li style="box-sizing: border-box; line-height: 1.4; padding: 2px 0px;">
+                <p style="box-sizing: border-box; margin: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Whether you use</span> <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Member.activity" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.Member.activity"><code class="xref py py-attr docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">Member.activity</span></code></a> <span style="color: rgb(209, 213, 216);">or</span> <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Member.activities" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.Member.activities"><code class="xref py py-attr docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">Member.activities</span></code></a><span style="color: rgb(209, 213, 216);">&nbsp;to check member&rsquo;s activities.</span></p>
+            </li>
+        </ul>
+    </section>
+    <section style="box-sizing: border-box;">
+        <h2 style="box-sizing: border-box; font-weight: normal; color: var(--main-big-headers-text); margin: 20px 0px 10px; padding: 10px 0px; border-bottom: 1px solid var(--main-h4-header-border); font-size: 1.1em;"><span style="color: rgb(209, 213, 216); font-size: 24px;">Member Intent</span><a class="headerlink" href="https://discordpy.readthedocs.io/en/latest/intents.html#member-intent" title="Permalink to this headline" style="box-sizing: border-box; text-decoration: none; color: var(--header-link); font-size: 0.8em; padding: 0px 4px; visibility: hidden;"></a></h2>
+        <ul class="simple" style="box-sizing: border-box; list-style: disc; margin: 1em 0px; padding-left: 1.3em;">
+            <li style="box-sizing: border-box; line-height: 1.4; padding: 2px 0px;">
+                <p style="box-sizing: border-box; margin: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Whether you track member joins or member leaves, corresponds to&nbsp;</span><a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.on_member_join" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.on_member_join"><code class="xref py py-func docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">on_member_join()</span></code></a> <span style="color: rgb(209, 213, 216);">and</span> <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.on_member_remove" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.on_member_remove"><code class="xref py py-func docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">on_member_remove()</span></code></a> <span style="color: rgb(209, 213, 216);">events.</span></p>
+            </li>
+            <li style="box-sizing: border-box; line-height: 1.4; padding: 2px 0px;">
+                <p style="box-sizing: border-box; margin: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Whether you want to track member updates such as nickname or role changes.</span></p>
+            </li>
+            <li style="box-sizing: border-box; line-height: 1.4; padding: 2px 0px;">
+                <p style="box-sizing: border-box; margin: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Whether you want to track user updates such as usernames, avatars, discriminators, etc.</span></p>
+            </li>
+            <li style="box-sizing: border-box; line-height: 1.4; padding: 2px 0px;">
+                <p style="box-sizing: border-box; margin: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Whether you want to request the guild member list through</span> <a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Guild.chunk" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.Guild.chunk"><code class="xref py py-meth docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">Guild.chunk()</span></code></a><span style="color: rgb(41, 105, 176);">&nbsp;</span><span style="color: rgb(209, 213, 216);">or&nbsp;</span><span style="color: rgb(41, 105, 176);"><a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Guild.fetch_members" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.Guild.fetch_members"><code class="xref py py-meth docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px;">Guild.fetch_members()</span></code></a></span><span style="color: rgb(209, 213, 216);">.</span></p>
+            </li>
+            <li style="box-sizing: border-box; line-height: 1.4; padding: 2px 0px;">
+                <p style="box-sizing: border-box; margin: 2px; line-height: 1.4;"><span style="color: rgb(209, 213, 216);">Whether you want high accuracy member cache under&nbsp;</span><a class="reference internal" href="https://discordpy.readthedocs.io/en/latest/api.html#discord.Guild.members" style="box-sizing: border-box; text-decoration: none; color: var(--link-text);" title="discord.Guild.members"><code class="xref py py-attr docutils literal notranslate" style="box-sizing: border-box; font-family: var(--monospace-font-family); font-size: 0.9em; overflow-wrap: break-word; background-color: var(--xref-code-background); padding: 0.15em; border-radius: 3px; font-weight: normal;"><span class="pre" style="box-sizing: border-box; padding: 0px 2px; color: rgb(41, 105, 176);">Guild.members</span></code></a><span style="color: rgb(209, 213, 216);">.</span><br><br><br></p>
+            </li>
+        </ul>
+    </section>
+</section>
+<p style="text-align: center;"><span style="color: rgb(209, 213, 216);">Info from</span> <a href="https://discordpy.readthedocs.io/en/latest/intents.html" rel="noopener noreferrer" target="_blank">discord.py docs.</a></p>
+  <p><br></p>
+ <p><br></p>
+ <div class="container">                
+  <ul class="pager">
+    <li><a style="background-color:#393939;" href="make-bot-on.html">Previous Course</a></li>
+    <li><a style="background-color:#393939;" href="coming-soon.html">Next Course</a></li>
+  </ul>
+</div>
+ <p><br></p>
+  <footer>
+      <p>Courses and examples are reviewed to avoid errors, but we cannot guarantee full correctness of all code. </p>
+        <p>Copyright &copy; 2020-2021 All Rights Reserved by <a href="mailto:support@discordmachines.org">Discord Machines</a>.<br><a> 
+                                                                                                                                      </footer>
+  
+</body>
+</html> 
